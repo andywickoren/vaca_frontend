@@ -1,0 +1,211 @@
+.navbar {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 104px;
+  padding-right: 104px;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* .navbar__compass-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; 
+  max-width: 300px;
+} */
+
+.navbar__button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+  font-weight: 500;
+  /* width: 125px;
+  height: 48px;
+  border: 1px solid #fff; */
+  border-radius: 100px;
+}
+
+.navbar__button_type_logout {
+  width: 125px;
+  height: 48px;
+  border: 2px solid #fff;
+
+  /* border-radius: 100px; */
+}
+
+.navbar__button_type_logout:hover {
+  border-color: #d3d3d3;
+  color: #d3d3d3;
+  width: 128px;
+  height: 51px;
+  /* background-color: transparent; */
+}
+
+.navbar__logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 158px;
+}
+
+.navbar__image-upload-icon {
+  height: 50px;
+  width: 50px;
+}
+
+.navbar__image-upload-icon:hover {
+  height: 56px;
+  width: 56px;
+  cursor: pointer;
+}
+.navbar__logo-around {
+  font-size: 25px;
+}
+
+.navbar__image-upload-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar__tooltip {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.navbar__image-upload-container:hover .navbar__tooltip {
+  opacity: 1;
+}
+
+.navbar__logo-the-us {
+  font-size: 12px;
+}
+
+.navbar__logo-icon {
+  width: 58px;
+}
+
+.navbar__logo-icon:hover {
+  width: 60px;
+  cursor: pointer;
+}
+
+.navbar__label {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar__options {
+  display: flex;
+}
+
+.navbar__logged-in-options {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar__home-button {
+  margin-right: 13px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: white;
+}
+
+.navbar__home-button_saved-news {
+  color: black;
+}
+
+.navbar__saved-news-options {
+  display: flex;
+}
+
+.navbar__user-rectangle {
+}
+.navbar__user-rectangle_saved-news {
+  position: relative;
+  color: black;
+  align-self: center;
+}
+
+.navbar__saved-articles-button {
+  border: none;
+  background: transparent;
+  color: white;
+}
+
+.navbar__signin-button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: white;
+}
+
+.navbar__signin-button-text {
+  position: absolute;
+  top: 0;
+  right: 63;
+}
+
+.navbar__user-button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: white;
+}
+
+.navbar__user-button-elements {
+  position: absolute;
+  align-self: center;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: black;
+}
+
+.navbar__user-button-text_saved-news {
+  align-self: center;
+}
+
+.navbar__user-button-username {
+  align-self: center;
+  position: absolute;
+  /* top: 0;
+  right: 0; */
+}
+
+.navbar__username_saved-news {
+  align-self: center;
+  position: absolute;
+  color: black;
+}

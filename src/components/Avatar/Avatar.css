@@ -1,0 +1,17 @@
+.avatar-container {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%; /* Makes the container a circle */
+  overflow: hidden; /* Hides any content outside the circle */
+  position: relative;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the circle area */
+  object-position: center; /* Ensures the image is centered by default */
+  position: absolute;
+  top: -10px; /* Adjusts the position up */
+  left: -20px; /* Adjusts the position to the left */
+}
