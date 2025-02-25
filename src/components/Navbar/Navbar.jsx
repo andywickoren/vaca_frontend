@@ -8,7 +8,7 @@ import union from "../../assets/union.png";
 import { useEffect, useState } from "react";
 import ImageUploadIcon from "../../assets/ImageUpload.svg";
 import ImageUploadOnHover from "../../assets/ImageUploadOnHover.svg";
-function Navbar({ handleSigninClick, layout, username, handleAddTrip }) {
+function Navbar({ handleSigninClick, layout, username, handleAddTripClick }) {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [compassHover, setCompassHover] = useState(false);
   const [imageUploadHover, setImageUploadHover] = useState(false);
@@ -44,7 +44,7 @@ function Navbar({ handleSigninClick, layout, username, handleAddTrip }) {
               className="navbar__image-upload-icon"
               // onMouseEnter={() => setIsHovered(true)}
               // onMouseLeave={() => setIsHovered(false)}
-              onClick={handleAddTrip}
+              onClick={handleAddTripClick}
             />
             {imageUploadHover && (
               <span className="navbar__tooltip">Upload Images</span>

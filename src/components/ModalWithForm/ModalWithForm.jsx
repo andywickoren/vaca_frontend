@@ -1,7 +1,14 @@
 import "./ModalWithForm.css";
 import close from "../../assets/close.png";
 
-function ModalWithForm({ children, handleCloseClick, isOpen, title }) {
+function ModalWithForm({
+  children,
+  handleCloseClick,
+  isOpen,
+  title,
+  formData,
+  handleSubmit,
+}) {
   const handleOverlay = (e) => {
     e.target === e.currentTarget && handleCloseClick();
   };
@@ -10,7 +17,11 @@ function ModalWithForm({ children, handleCloseClick, isOpen, title }) {
       className={`modal ${isOpen && "modal_opened"}`}
       onClick={handleOverlay}
     >
-      <div className="modal__content">
+      <div
+        className={`modal__content ${
+          formData.images.length > 0 ? "modal__content_with-images" : ""
+        }`}
+      >
         <h2 className="modal__title">{title}</h2>
         <button
           onClick={handleCloseClick}
@@ -20,7 +31,9 @@ function ModalWithForm({ children, handleCloseClick, isOpen, title }) {
         >
           <img src={close} alt="" className="modal__close-icon" />
         </button>
-        <form className="modal__form">{children}</form>
+        <form onSubmit={handleSubmit} className="modal__form">
+          {children}
+        </form>
       </div>
     </div>
   );

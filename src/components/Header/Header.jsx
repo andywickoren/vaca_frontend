@@ -3,7 +3,7 @@ import Navbar from "../Navbar/Navbar";
 import SearchForm from "../SearchForm/SearchForm";
 import headerBackground from "../../assets/header-background.png";
 
-function Header({ handleSigninClick, handleAddTrip }) {
+function Header({ handleSigninClick, handleAddTripClick }) {
   const layout = "Home";
   return (
     <header
@@ -17,7 +17,7 @@ function Header({ handleSigninClick, handleAddTrip }) {
       <Navbar
         handleSigninClick={handleSigninClick}
         layout={layout}
-        handleAddTrip={handleAddTrip}
+        handleAddTripClick={handleAddTripClick}
       ></Navbar>
       <div className="header__content">
         <h1 className="header__title">Search a State</h1>

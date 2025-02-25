@@ -18,12 +18,17 @@
   background-color: #fff;
   /* background-color: aliceblue; */
   position: relative;
-  padding: 34px 36px 28px 36px;
-  max-width: 360px;
+  padding: 34px 35px 38px 30px;
+  max-width: 380px;
   box-sizing: border-box;
   width: 100%;
   border-radius: 20px;
 }
+
+.modal__content_with-images {
+  padding-bottom: 12px;
+}
+
 .modal__close {
   position: absolute;
   bottom: 0;
@@ -39,14 +44,24 @@
 
 .modal__title {
   margin: 0 0 22px 0;
+  font-size: 28px;
 }
 
 .modal__label {
-  color: #2f71e5;
+  color: rgb(151, 184, 242);
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
+}
+
+.modal__image-modal-upload-icon {
+  height: 35px;
+}
+
+.modal__image-preview {
+  margin-top: 12px;
+  max-height: 25px;
 }
 
 .modal__input {
@@ -70,7 +85,11 @@
   align-items: center;
 }
 
-.modal__signin-btn {
+/* .modal__signin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   height: 47px;
   width: 100%;
   border-radius: 100px;
@@ -79,6 +98,62 @@
   color: #fff;
   background-color: #2f71e5;
   cursor: pointer;
+  font-size: 18px;
+  margin-top: 11px;
+} */
+
+.modal__file-input {
+  display: none;
+  width: 100%;
+}
+
+.modal__file-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(151, 184, 242);
+  border-radius: 5px;
+  padding: 10px;
+  gap: 10px;
+  cursor: pointer;
+  font-family: "Roboto";
+  font-size: 18px;
+  color: #fff;
+  height: 47px;
+  width: 100%;
+  border-radius: 100px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+.modal__file-label:hover {
+  background-color: rgb(109, 156, 237);
+}
+
+.modal__file-input-container {
+  width: 100%;
+}
+
+.modal__signin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 47px;
+  width: 100%;
+  border-radius: 100px;
+  border: none;
+  font-family: "Roboto";
+  color: #fff;
+  background-color: rgb(180, 180, 180);
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 11px;
+  padding: 8px 6px;
+}
+
+.modal__signin-btn:hover {
+  background-color: rgb(160, 160, 160);
 }
 
 .modal__or-signup-btn {
@@ -103,8 +178,9 @@
   /* padding: 10px; */
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px;
   box-sizing: border-box;
-  margin-bottom: 23px;
+  margin-bottom: 14px;
   margin-top: 9px;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
 }

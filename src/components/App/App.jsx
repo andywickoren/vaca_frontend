@@ -19,9 +19,17 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [currentUser, setCurrentUser] = useState("Carol");
 
+  useEffect(() => {
+    console.log(tripCards);
+  }, [tripCards]);
+
   function handleCloseClick() {
     setActiveModal("");
   }
+
+  const handleAddTrip = (newCard) => {
+    setTripCards((prevCards) => [newCard, ...prevCards]);
+  };
 
   function handleSigninClick() {
     setActiveModal("signin-modal");
@@ -40,7 +48,7 @@ function App() {
     setActiveModal("register-modal");
   }
 
-  function handleAddTrip() {
+  function handleAddTripClick() {
     setActiveModal("trip-modal");
   }
 
@@ -96,8 +104,8 @@ function App() {
             element={
               <>
                 <Main
-                  handleAddTrip={handleAddTrip}
-                  testCards={testCards}
+                  handleAddTripClick={handleAddTripClick}
+                  tripCards={tripCards}
                   handleSigninClick={handleSigninClick}
                 />
                 <About></About>
@@ -135,6 +143,7 @@ function App() {
         )}
         {activeModal === "trip-modal" && (
           <TripModal
+            handleAddTrip={handleAddTrip}
             openSigninModal={handleSigninClick}
             handleCloseClick={handleCloseClick}
             handleSubmit={handleSubmit}

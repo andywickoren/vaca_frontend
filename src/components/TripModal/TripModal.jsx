@@ -1,85 +1,83 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
 import Select from "react-select";
+import ImageModalUploadIcon from "../../assets/ImageModalUploadIcon.svg";
+import { states } from "../../constants/states";
+import { countries } from "../../constants/countries";
 
-function TripModal({ handleSubmit, handleCloseClick, isOpen }) {
+function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
   const title = "New Trip";
-  const countries = [
-    { value: "US", label: "United States" },
-    { value: "CA", label: "Canada" },
-    { value: "MX", label: "Mexico" },
-    { value: "GB", label: "United Kingdom" },
-    { value: "FR", label: "France" },
-    { value: "DE", label: "Germany" },
-    { value: "JP", label: "Japan" },
-    { value: "CN", label: "China" },
-    { value: "IN", label: "India" },
-    { value: "AU", label: "Australia" },
-  ];
 
-  const states = [
-    { value: "AL", label: "Alabama" },
-    { value: "AK", label: "Alaska" },
-    { value: "AZ", label: "Arizona" },
-    { value: "AR", label: "Arkansas" },
-    { value: "CA", label: "California" },
-    { value: "CO", label: "Colorado" },
-    { value: "CT", label: "Connecticut" },
-    { value: "DE", label: "Delaware" },
-    { value: "FL", label: "Florida" },
-    { value: "GA", label: "Georgia" },
-    { value: "HI", label: "Hawaii" },
-    { value: "ID", label: "Idaho" },
-    { value: "IL", label: "Illinois" },
-    { value: "IN", label: "Indiana" },
-    { value: "IA", label: "Iowa" },
-    { value: "KS", label: "Kansas" },
-    { value: "KY", label: "Kentucky" },
-    { value: "LA", label: "Louisiana" },
-    { value: "ME", label: "Maine" },
-    { value: "MD", label: "Maryland" },
-    { value: "MA", label: "Massachusetts" },
-    { value: "MI", label: "Michigan" },
-    { value: "MN", label: "Minnesota" },
-    { value: "MS", label: "Mississippi" },
-    { value: "MO", label: "Missouri" },
-    { value: "MT", label: "Montana" },
-    { value: "NE", label: "Nebraska" },
-    { value: "NV", label: "Nevada" },
-    { value: "NH", label: "New Hampshire" },
-    { value: "NJ", label: "New Jersey" },
-    { value: "NM", label: "New Mexico" },
-    { value: "NY", label: "New York" },
-    { value: "NC", label: "North Carolina" },
-    { value: "ND", label: "North Dakota" },
-    { value: "OH", label: "Ohio" },
-    { value: "OK", label: "Oklahoma" },
-    { value: "OR", label: "Oregon" },
-    { value: "PA", label: "Pennsylvania" },
-    { value: "RI", label: "Rhode Island" },
-    { value: "SC", label: "South Carolina" },
-    { value: "SD", label: "South Dakota" },
-    { value: "TN", label: "Tennessee" },
-    { value: "TX", label: "Texas" },
-    { value: "UT", label: "Utah" },
-    { value: "VT", label: "Vermont" },
-    { value: "VA", label: "Virginia" },
-    { value: "WA", label: "Washington" },
-    { value: "WV", label: "West Virginia" },
-    { value: "WI", label: "Wisconsin" },
-    { value: "WY", label: "Wyoming" },
-  ];
+  const [formData, setFormData] = useState({
+    tripName: "",
+    nationalPark: "",
+    state: "",
+    country: "",
+    images: [],
+  });
 
-  const [selectedState, setSelectedState] = useState(null);
-
-  const handleStateChange = (selectedOption) => {
-    setSelectedState(selectedOption);
+  const handleChange = (event) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [event.target.name]: event.target.value,
+    }));
   };
 
+  const handleFileChange = (event) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      images: Array.from(event.target.files),
+    }));
+  };
+
+  const [selectedFiles, setSelectedFiles] = useState([]);
+
+  //   const handleFileChange = (event) => {
+  //     setSelectedFiles(Array.from(event.target.files));
+  //   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Create a new card with the form data
+    const newCard = {
+      name: formData.tripName,
+      nationalPark: formData.nationalPark,
+      state: formData.state,
+      country: formData.country,
+      images: formData.images.map((file) => URL.createObjectURL(file)), // Temporarily using object URLs for image previews
+    };
+
+    handleAddTrip(newCard);
+
+    setFormData({
+      tripName: "",
+      nationalPark: "",
+      state: "",
+      country: "",
+      images: [],
+    });
+
+    handleCloseClick();
+  };
+
+  const [selectedState, setSelectedState] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState(null);
 
   const handleCountryChange = (selectedOption) => {
     setSelectedCountry(selectedOption);
+    setFormData((prevData) => ({
+      ...prevData,
+      country: selectedOption ? selectedOption.value : "",
+    }));
+  };
+
+  const handleStateChange = (selectedOption) => {
+    setSelectedState(selectedOption);
+    setFormData((prevData) => ({
+      ...prevData,
+      state: selectedOption ? selectedOption.value : "",
+    }));
   };
 
   return (
@@ -87,6 +85,8 @@ function TripModal({ handleSubmit, handleCloseClick, isOpen }) {
       handleCloseClick={handleCloseClick}
       isOpen={isOpen}
       title={title}
+      formData={formData}
+      handleSubmit={handleSubmit}
     >
       <div className="modal__input-wrapper">
         <label htmlFor="email" className="modal__label">
@@ -96,8 +96,10 @@ function TripModal({ handleSubmit, handleCloseClick, isOpen }) {
           type="text"
           className="modal__input"
           id="trip"
-          name="trip"
+          name="tripName"
           placeholder="Name your trip"
+          onChange={handleChange}
+          value={formData.tripName}
           //   value={trip}
           //   onChange={handleTripNameChange}
         />
@@ -113,8 +115,10 @@ function TripModal({ handleSubmit, handleCloseClick, isOpen }) {
           type="text"
           className="modal__input"
           id="national-park"
-          name="national-park"
+          name="nationalPark"
           placeholder="National Park (optional)"
+          onChange={handleChange}
+          value={formData.nationalPark}
           //   value={national - park}
           //   onChange={handleStateChange}
         />
@@ -167,13 +171,49 @@ function TripModal({ handleSubmit, handleCloseClick, isOpen }) {
         {/* <span className="modal__error-message_type_register-error">
           {submissionError}
         </span> */}
+        <div className="modal__file-input-container">
+          <input
+            type="file"
+            id="image-upload"
+            name="images"
+            multiple
+            className="modal__file-input"
+            onChange={handleFileChange}
+          />
+          <label htmlFor="image-upload" className="modal__file-label">
+            <p className="modal__signin-btn-txt">Upload Images</p>
+            <img
+              src={ImageModalUploadIcon}
+              alt=""
+              className="modal__image-modal-upload-icon"
+            />
+          </label>
+        </div>
+
         <button
           type="submit"
           className="modal__submit modal__signin-btn"
           onClick={handleSubmit}
         >
-          Upload Images
+          <p className="modal__signin-btn-txt">Submit</p>
+          {/* <img
+            src={ImageModalUploadIcon}
+            alt=""
+            className="modal__image-modal-upload-icon"
+          /> */}
         </button>
+        {formData.images.length > 0 && (
+          <div className="modal__image-previews">
+            {formData.images.map((file, index) => (
+              <img
+                key={index}
+                src={URL.createObjectURL(file)}
+                alt="Selected"
+                className="modal__image-preview"
+              />
+            ))}
+          </div>
+        )}
         {/* <button
           type="button"
           className="modal__or-signup-btn"
