@@ -26,14 +26,27 @@
 
 .tripcard__bookmark-container {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: -280px;
   right: -347px;
+  width: 38px;
+  height: 38px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.tripcard__bookmark-container:hover {
+  cursor: pointer;
 }
 
 .tripcard__bookmark_unmarked {
   position: relative;
-  top: -289px;
-  right: -316px;
+  /* top: -289px;
+  right: -316px; */
+  height: 36px;
+  width: 36px;
 }
 
 .tripcard__info {
@@ -44,6 +57,15 @@
   font-family: "Source Sans Pro", sans-serif;
   font-size: 18px;
   color: #b6bcbf;
+}
+
+.tripcard__edit-icon {
+  width: 40px;
+}
+
+.tripcard__edit-icon:hover {
+  cursor: pointer;
+  width: 42px;
 }
 
 .tripcard__title {
@@ -59,4 +81,9 @@
   font-family: "Roboto Slab", serif;
   letter-spacing: 0.4px;
   color: #b6bcbf;
+}
+
+.tripcard__edit-container {
+  display: flex;
+  justify-content: space-between;
 }
