@@ -6,8 +6,9 @@ import Header from "../Header/Header";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 import { useState } from "react";
+import MoutainIcon from "../../assets/MountainIcon.svg";
 
-function Main({ tripCards, handleSigninClick, handleAddTripClick }) {
+function Main({ tripData, handleSigninClick, handleAddTripClick }) {
   const { currentUser } = useContext(CurrentUserContext);
   const layout = "Home";
   // const [tripCards, setTripCards] = useState(testCards);
@@ -22,8 +23,12 @@ function Main({ tripCards, handleSigninClick, handleAddTripClick }) {
         handleAddTripClick={handleAddTripClick}
       ></Header>
       <div className="main">
-        <h2 className="main__heading">{`${currentUser}'s Trips`}</h2>
-        <TripCardList tripCards={tripCards} layout={layout} />
+        <div className="main__heading-wrapper">
+          <h2 className="main__heading">{`${currentUser}'s Trips`} </h2>
+          <img src={MoutainIcon} alt="" className="main__heading-icon" />
+        </div>
+
+        <TripCardList tripData={tripData} layout={layout} />
         <div className="main__show-more-button-container">
           <button className="main__show-more-button">Show More</button>
         </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./TripCard.css";
 import bookmarkContainer from "../../assets/bookmark-container.png";
 // import bookmarkUnmarked from "../../assets/bookmark-unmarked.png";
@@ -7,8 +8,17 @@ import bookmarkMarked from "../../assets/bookmark-marked.png";
 import TripCardEditIcon from "../../assets/TripCardEditIcon.svg";
 import BookmarkUnmarkedHovered from "../../assets/BookmarkUnmarkedHovered.svg";
 import TripCardEditIconHovered from "../../assets/TripCardEditIconHovered.svg";
+import { stateAbbreviations } from "../../constants/states";
+import ClickHereIcon from "../../assets/ClickHereIcon.svg";
 
-function TripCard({ state, imageUrl, country, nationalPark }) {
+function TripCard({
+  tripName,
+  state,
+  imageUrl,
+  country,
+  nationalPark,
+  tripSlug,
+}) {
   // const TripCard = ({ trip }) => {
   //   const fullStateName = stateAbbreviations[trip.state] || trip.state;
   // }
@@ -22,21 +32,12 @@ function TripCard({ state, imageUrl, country, nationalPark }) {
       <div className="tripcard__image-container">
         <img src={imageUrl} alt="" className="tripcard__image" />
         <div className="tripcard__bookmark-container">
-          {!isSaved ? (
-            <img
-              className="tripcard__bookmark_unmarked"
-              src={bookmarkHovered ? BookmarkUnmarkedHovered : BookmarkUnmarked}
-              onMouseEnter={() => setBookmarkHovered(true)}
-              onMouseLeave={() => setBookmarkHovered(false)}
-            />
-          ) : (
-            <img
-              className="tripcard__bookmark_unmarked"
-              src={bookmarkMarked}
-              onMouseEnter={setIsHovered(true)}
-              onMouseLeaave={setIsHovered(false)}
-            />
-          )}
+          <img
+            className="tripcard__bookmark_unmarked"
+            src={bookmarkHovered ? BookmarkUnmarkedHovered : BookmarkUnmarked}
+            onMouseEnter={() => setBookmarkHovered(true)}
+            onMouseLeave={() => setBookmarkHovered(false)}
+          />
         </div>
       </div>
       <div className="tripcard__info">
@@ -50,14 +51,25 @@ function TripCard({ state, imageUrl, country, nationalPark }) {
             onMouseLeave={() => setEditIconHovered(false)}
           />
         </div>
-        <h3 className="tripcard__title">{state}</h3>
+        <Link className="tripcard__link" to={`/gallery/${tripSlug}`}>
+          <div className="tripcard__title-container">
+            <h3 className="tripcard__title">{tripName}</h3>
+            <img
+              src={ClickHereIcon}
+              alt=""
+              className="tripcard__click-here-icon"
+            />
+          </div>
+        </Link>
         <p className="tripcard__description">
           Ever since I read Richard Louv's influential book, "Last Child in the
           Woods," the idea of having a special "sit spot" has stuck with me.
           This advice, which Louv attributes to nature educator Jon Young, is
           for both adults and children to find...
         </p>
-        <footer className="tripcard__footer">NATIONAL GEOGRAPHIC</footer>
+        <footer className="tripcard__footer">
+          {stateAbbreviations[state].toUpperCase()}
+        </footer>
       </div>
     </div>
   );

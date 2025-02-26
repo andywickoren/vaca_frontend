@@ -4,11 +4,20 @@
   background-color: #f5f6f7;
 }
 
+.main__heading-wrapper {
+  display: flex;
+  gap: 13px;
+}
+
 .main__heading {
   margin: 0 0 32px 0;
-  font-family: "Roboto Slab";
+  font-family: "Shadows Into Light", sans-serif;
   font-weight: 400;
   font-size: 40px;
+}
+
+.main__heading-icon {
+  height: 60px;
 }
 
 .main__show-more-button-container {

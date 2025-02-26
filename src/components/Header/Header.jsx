@@ -20,7 +20,7 @@ function Header({ handleSigninClick, handleAddTripClick }) {
         handleAddTripClick={handleAddTripClick}
       ></Navbar>
       <div className="header__content">
-        <h1 className="header__title">Search a State</h1>
+        <h1 className="header__title">Share your journey around the US</h1>
         <p className="header__caption">
           Filter your trips by state, country, region or National Parks
         </p>

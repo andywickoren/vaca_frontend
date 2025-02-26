@@ -1,5 +1,8 @@
 import "./ModalWithForm.css";
 import close from "../../assets/close.png";
+import ModalTitleIcon from "../../assets/ModalTitleIcon.svg";
+import ModalTitleIconHovered from "../../assets/ModalTitleIconHovered.svg";
+import { useState } from "react";
 
 function ModalWithForm({
   children,
@@ -9,6 +12,7 @@ function ModalWithForm({
   formData,
   handleSubmit,
 }) {
+  const [modalTitleIconIsHovered, setModalTitleIconIsHovered] = useState(false);
   const handleOverlay = (e) => {
     e.target === e.currentTarget && handleCloseClick();
   };
@@ -22,7 +26,19 @@ function ModalWithForm({
           formData.images.length > 0 ? "modal__content_with-images" : ""
         }`}
       >
-        <h2 className="modal__title">{title}</h2>
+        <div className="modal__title-wrapper">
+          <h2 className="modal__title">{title}</h2>
+          <img
+            src={
+              modalTitleIconIsHovered ? ModalTitleIconHovered : ModalTitleIcon
+            }
+            alt=""
+            className="modal__title-icon"
+            onMouseEnter={() => setModalTitleIconIsHovered(true)}
+            onMouseLeave={() => setModalTitleIconIsHovered(false)}
+            onClick={handleCloseClick}
+          />
+        </div>
         <button
           onClick={handleCloseClick}
           type="button"

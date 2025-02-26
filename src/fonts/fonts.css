@@ -27,3 +27,15 @@
   font-weight: 900;
   src: url("./Roboto-Black.ttf");
 }
+
+@font-face {
+  font-family: "Shadows Into Light";
+  font-weight: 400;
+  src: url("./shadows-into-light-regular.ttf");
+}
+
+@font-face {
+  font-family: "Kalam";
+  font-weight: 400;
+  src: url("./Kalam-Regular.ttf");
+}

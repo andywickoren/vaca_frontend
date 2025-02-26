@@ -10,6 +10,7 @@ function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
 
   const [formData, setFormData] = useState({
     tripName: "",
+    tripSlug: "",
     nationalPark: "",
     state: "",
     country: "",
@@ -39,12 +40,15 @@ function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // Create a new card with the form data
+    const formattedTripName = formData.tripName
+      .toLowerCase()
+      .replace(/\s+/g, "-");
     const newCard = {
-      name: formData.tripName,
+      tripName: formData.tripName,
       nationalPark: formData.nationalPark,
       state: formData.state,
       country: formData.country,
+      tripSlug: formattedTripName,
       images: formData.images.map((file) => URL.createObjectURL(file)), // Temporarily using object URLs for image previews
     };
 

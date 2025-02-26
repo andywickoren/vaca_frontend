@@ -7,22 +7,36 @@
 
 header h1 {
   font-weight: 400;
-  font-size: 51px;
+  font-size: 63px;
 }
 
 .header {
-  font-family: "Roboto Slab";
+  font-family: "Roboto Slab", serif;
   font-weight: 400;
   color: #fff;
   /* font-size: 60px; */
+  height: 576px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 .header__content {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 640px;
+}
+
+.header__title {
+  font-family: "Kalam";
+  padding-left: 15px;
 }
 
 .header__caption {
   font-size: 18px;
+  padding-left: 15px;
 }

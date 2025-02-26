@@ -10,6 +10,20 @@
   align-items: center;
 }
 
+.modal__title-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal__title-icon {
+  height: 40px;
+}
+
+.modal__title-icon:hover {
+  height: 43px;
+  cursor: pointer;
+}
+
 .modal_opened {
   display: flex;
 }
@@ -44,7 +58,8 @@
 
 .modal__title {
   margin: 0 0 22px 0;
-  font-size: 28px;
+  font-size: 36px;
+  font-family: "Shadows Into Light";
 }
 
 .modal__label {

@@ -12,23 +12,24 @@ import ConfirmRegisterModal from "../ConfirmRegisterModal/ConfirmRegisterModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import cardinal from "../../assets/Cardinal.jpg";
 import TripModal from "../TripModal/TripModal";
+import GalleryPage from "../GalleryPage/GalleryPage";
 
 function App() {
-  const [tripCards, setTripCards] = useState([]);
+  const [tripData, setTripData] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeModal, setActiveModal] = useState("");
   const [currentUser, setCurrentUser] = useState("Carol");
 
   useEffect(() => {
-    console.log(tripCards);
-  }, [tripCards]);
+    console.log(tripData);
+  }, [tripData]);
 
   function handleCloseClick() {
     setActiveModal("");
   }
 
-  const handleAddTrip = (newCard) => {
-    setTripCards((prevCards) => [newCard, ...prevCards]);
+  const handleAddTrip = (newData) => {
+    setTripData((prevData) => [newData, ...prevData]);
   };
 
   function handleSigninClick() {
@@ -105,16 +106,20 @@ function App() {
               <>
                 <Main
                   handleAddTripClick={handleAddTripClick}
-                  tripCards={tripCards}
+                  tripData={tripData}
                   handleSigninClick={handleSigninClick}
                 />
                 <About></About>
               </>
             }
           />
-          <Route
+          {/* <Route
             path="/trip"
             element={<TripView testCards={testCards}></TripView>}
+          /> */}
+          <Route
+            path="/gallery/:tripSlug"
+            element={<GalleryPage tripData={tripData} />}
           />
         </Routes>
 

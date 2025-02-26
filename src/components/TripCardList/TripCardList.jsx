@@ -1,21 +1,25 @@
 import "./TripCardList.css";
 import TripCard from "../TripCard/TripCard";
 
-function TripCardList({ tripCards }) {
+function TripCardList({ tripData }) {
   // const cardsList = testCards();
   // console.log(cardsList[0].imageUrl);
   return (
-    <ul className="news-card-list">
-      {tripCards.map((card, index) =>
-        card.images.map((image, imageIndex) => (
+    <ul className="trip-card-list">
+      {tripData.map(
+        (data, index) => (
+          // data.images.map((image, imageIndex) => (
           <TripCard
-            key={`${index}-${imageIndex}`}
-            imageUrl={image}
-            state={card.state}
-            country={card.country}
-            nationalPark={card.nationalPark}
+            // key={`${index}-${imageIndex}`}
+            imageUrl={data.images[0]}
+            state={data.state}
+            country={data.country}
+            nationalPark={data.nationalPark}
+            tripSlug={data.tripSlug}
+            tripName={data.tripName}
           />
-        ))
+        )
+        // ))
       )}
     </ul>
   );
