@@ -1,4 +1,4 @@
-import "./Navbar.css";
+import "./NavbarGallery.css";
 import { Link } from "react-router-dom";
 import mainSignin from "../../assets/main-signin.png";
 import userRectangle from "../../assets/user-rectangle.png";
@@ -8,10 +8,26 @@ import union from "../../assets/union.png";
 import { useEffect, useState } from "react";
 import ImageUploadIcon from "../../assets/ImageUpload.svg";
 import ImageUploadOnHover from "../../assets/ImageUploadOnHover.svg";
-function Navbar({ handleSigninClick, layout, username, handleAddTripClick }) {
+import CompassBlack from "../../assets/compass-black.svg";
+import CompassBlackAnimation from "../../assets/compass-black.gif";
+import ImageUploadBlack from "../../assets/ImageUploadBlack.svg";
+import ImageUploadDarkGrey from "../../assets/ImageUploadDarkGrey.svg";
+import ReturnBlack from "../../assets/ReturnBlack.svg";
+import ReturnGrey from "../../assets/ReturnGrey.svg";
+
+function NavbarGallery({
+  handleSigninClick,
+  layout,
+  username,
+  handleAddTripClick,
+  tripName,
+}) {
+  console.log(tripName);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [compassHover, setCompassHover] = useState(false);
   const [imageUploadHover, setImageUploadHover] = useState(false);
+  const [returnHovered, setReturnHovered] = useState(false);
+
   // const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -19,7 +35,7 @@ function Navbar({ handleSigninClick, layout, username, handleAddTripClick }) {
       <div className="navbar__logo">
         {/* <div className="navbar__news-explorer-button">Around</div> */}
         <img
-          src={compassHover ? CompassAnimation : Compass}
+          src={compassHover ? CompassBlackAnimation : CompassBlack}
           alt="Compass Logo"
           className="navbar__logo-icon"
           onMouseEnter={() => setCompassHover(true)}
@@ -39,7 +55,7 @@ function Navbar({ handleSigninClick, layout, username, handleAddTripClick }) {
             onMouseLeave={() => setImageUploadHover(false)}
           >
             <img
-              src={imageUploadHover ? ImageUploadOnHover : ImageUploadIcon}
+              src={imageUploadHover ? ImageUploadDarkGrey : ImageUploadBlack}
               alt=""
               className="navbar__image-upload-icon"
               // onMouseEnter={() => setIsHovered(true)}
@@ -47,11 +63,24 @@ function Navbar({ handleSigninClick, layout, username, handleAddTripClick }) {
               onClick={handleAddTripClick}
             />
             {imageUploadHover && (
-              <span className="navbar__tooltip">Upload Images</span>
+              <span className="navbar__tooltip navbar__tooltip_mode_black">
+                Add photos of {tripName}
+              </span>
             )}
           </div>
-          <button className="navbar__button navbar__button_type_logout">
-            <p className="navbar__logout-button-text">Log Out</p>
+          <button
+            className="navbar__button navbar__button_type_logout navbar__button_style_dark "
+            onMouseEnter={() => setReturnHovered(true)}
+            onMouseLeave={() => setReturnHovered(false)}
+          >
+            <div className="navbar__button-wrapper">
+              <p className="navbar__logout-button-text">Carol</p>
+              <img
+                src={returnHovered ? ReturnGrey : ReturnBlack}
+                alt=""
+                className="navbar__return-icon"
+              />
+            </div>
           </button>
         </div>
       </div>
@@ -59,4 +88,4 @@ function Navbar({ handleSigninClick, layout, username, handleAddTripClick }) {
   );
 }
 
-export default Navbar;
+export default NavbarGallery;

@@ -1,7 +1,9 @@
 import { states } from "../../constants/states";
 import { useParams } from "react-router-dom";
+import NavbarGallery from "../NavbarGallery/NavbarGallery";
 
 function GalleryPage({ tripData }) {
+  console.log(tripData);
   const { tripSlug } = useParams();
   const selectedTrip = tripData.find((trip) => trip.tripSlug === tripSlug);
 
@@ -19,7 +21,11 @@ function GalleryPage({ tripData }) {
 
   console.log(stateIcon);
 
-  return <div className="gallery-page"></div>;
+  return (
+    <div className="gallery-page">
+      <NavbarGallery tripName={selectedTrip.tripName}></NavbarGallery>
+    </div>
+  );
 }
 
 export default GalleryPage;

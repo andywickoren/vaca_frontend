@@ -47,6 +47,16 @@
   /* background-color: transparent; */
 }
 
+.navbar__button_style_dark {
+  color: black;
+  border: 2px solid #000;
+}
+
+.navbar__button_style_dark:hover {
+  border-color: #676767;
+  color: #676767;
+}
+
 .navbar__logo {
   display: flex;
   justify-content: space-between;
@@ -71,7 +81,6 @@
 .navbar__image-upload-container {
   position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -92,8 +101,21 @@
   z-index: 10;
 }
 
+.navbar__tooltip_mode_black {
+  font-family: "Roboto";
+  background-color: transparent;
+  color: #676767;
+  /* color:rgba(255, 255, 255, 0.2) */
+}
+
 .navbar__image-upload-container:hover .navbar__tooltip {
   opacity: 1;
+}
+
+.navbar__button-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar__logo-the-us {
@@ -107,6 +129,10 @@
 .navbar__logo-icon:hover {
   width: 60px;
   cursor: pointer;
+}
+
+.navbar__return-icon {
+  width: 30px;
 }
 
 .navbar__label {

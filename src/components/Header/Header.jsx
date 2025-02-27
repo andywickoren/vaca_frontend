@@ -2,6 +2,7 @@ import "./Header.css";
 import Navbar from "../Navbar/Navbar";
 import SearchForm from "../SearchForm/SearchForm";
 import headerBackground from "../../assets/header-background.png";
+import HeroImage from "../../assets/HeroImage.jpg";
 
 function Header({ handleSigninClick, handleAddTripClick }) {
   const layout = "Home";
