@@ -8,6 +8,15 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+.navbar-gallery {
+  height: 94px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 /* .navbar__compass-container {
   display: flex;
   justify-content: center;
@@ -62,6 +71,11 @@
   justify-content: space-between;
   align-items: center;
   width: 158px;
+}
+
+.navbar__link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .navbar__image-upload-icon {

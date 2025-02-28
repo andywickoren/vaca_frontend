@@ -6,6 +6,8 @@
 
 .footer__options {
   display: flex;
+  align-items: center;
+  height: 50px;
 }
 
 .footer__options-home {
@@ -15,6 +17,12 @@
   cursor: pointer;
 }
 
+.footer__options-home:hover {
+  color: #676767;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+}
+
 .footer__options-TripleTen {
   margin-right: 40px;
   cursor: pointer;
@@ -22,9 +30,24 @@
 
 .footer__options-github-icon {
   margin-right: 24px;
+
+  padding: 6px;
+  height: 25px;
+}
+
+.footer__options-github-icon:hover {
+  height: 45px;
+  padding: 0;
   cursor: pointer;
 }
 
 .footer__options-facebook-icon {
+  padding: 6px;
+  height: 25px;
+}
+
+.footer__options-facebook-icon:hover {
   cursor: pointer;
+  height: 35px;
+  padding: 0;
 }

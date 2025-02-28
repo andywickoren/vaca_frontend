@@ -1,0 +1,73 @@
+.gallery-page {
+  padding: 0;
+  padding-left: 104px;
+  padding-right: 104px;
+}
+
+.gallery-page__intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "topLeft topRight"
+    "bottomLeft bottomRight";
+  column-gap: 65px;
+}
+
+.top-left {
+  grid-area: topLeft;
+}
+
+.top-right {
+  grid-area: topRight;
+}
+
+.top-right {
+  grid-area: topRight;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  /* text-align: center;  */
+}
+
+.bottom-left {
+  grid-area: bottomLeft;
+}
+
+.bottom-right {
+  grid-area: bottomRight;
+}
+
+.gallery-page__main-title {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.gallery-page__trip-icon {
+  height: 60px;
+}
+
+.gallery-page__trip-title {
+  font-family: "Shadows Into Light", sans-serif;
+  font-weight: 200;
+  font-size: 50px;
+}
+
+.gallery-page__main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  max-height: 450px;
+}
+
+.gallery-page__description-title {
+  font-size: 24px;
+  margin: 0;
+}
+
+.gallery-page__description-text {
+  font-size: 16px;
+  line-height: 1.5;
+}

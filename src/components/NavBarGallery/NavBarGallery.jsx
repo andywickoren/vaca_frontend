@@ -31,7 +31,7 @@ function NavbarGallery({
   // const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="navbar">
+    <div className="navbar-gallery">
       <div className="navbar__logo">
         {/* <div className="navbar__news-explorer-button">Around</div> */}
         <img
@@ -73,14 +73,16 @@ function NavbarGallery({
             onMouseEnter={() => setReturnHovered(true)}
             onMouseLeave={() => setReturnHovered(false)}
           >
-            <div className="navbar__button-wrapper">
-              <p className="navbar__logout-button-text">Carol</p>
-              <img
-                src={returnHovered ? ReturnGrey : ReturnBlack}
-                alt=""
-                className="navbar__return-icon"
-              />
-            </div>
+            <Link className="navbar__link" to="/">
+              <div className="navbar__button-wrapper">
+                <p className="navbar__logout-button-text">Carol</p>
+                <img
+                  src={returnHovered ? ReturnGrey : ReturnBlack}
+                  alt=""
+                  className="navbar__return-icon"
+                />
+              </div>
+            </Link>
           </button>
         </div>
       </div>
