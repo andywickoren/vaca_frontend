@@ -15,6 +15,7 @@ function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
     state: "",
     country: "",
     images: [],
+    date: "",
   });
 
   const handleChange = (event) => {
@@ -40,16 +41,31 @@ function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    const currentDate = new Date().toISOString();
+    const formatDate = (isoDateString) => {
+      const date = new Date(isoDateString);
+      return new Intl.DateTimeFormat("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      }).format(date);
+    };
+
+    const formattedDate = formatDate(currentDate);
+    console.log("FORMATTED DATE: ", formattedDate);
+
     const formattedTripName = formData.tripName
       .toLowerCase()
       .replace(/\s+/g, "-");
+
     const newCard = {
       tripName: formData.tripName,
       nationalPark: formData.nationalPark,
       state: formData.state,
       country: formData.country,
       tripSlug: formattedTripName,
-      images: formData.images.map((file) => URL.createObjectURL(file)), // Temporarily using object URLs for image previews
+      date: formattedDate,
+      images: formData.images.map((file) => URL.createObjectURL(file)),
     };
 
     handleAddTrip(newCard);
@@ -60,6 +76,7 @@ function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
       state: "",
       country: "",
       images: [],
+      date: formattedDate,
     });
 
     handleCloseClick();

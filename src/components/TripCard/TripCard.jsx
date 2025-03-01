@@ -18,7 +18,9 @@ function TripCard({
   country,
   nationalPark,
   tripSlug,
+  date,
 }) {
+  console.log("DATE: ", date);
   // const TripCard = ({ trip }) => {
   //   const fullStateName = stateAbbreviations[trip.state] || trip.state;
   // }
@@ -42,7 +44,7 @@ function TripCard({
       </div>
       <div className="tripcard__info">
         <div className="tripcard__edit-container">
-          <div className="tripcard__date">{nationalPark}</div>
+          <div className="tripcard__date">{date}</div>
           <img
             src={editIconHovered ? TripCardEditIconHovered : TripCardEditIcon}
             alt=""

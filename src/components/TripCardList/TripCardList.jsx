@@ -17,6 +17,7 @@ function TripCardList({ tripData }) {
             nationalPark={data.nationalPark}
             tripSlug={data.tripSlug}
             tripName={data.tripName}
+            date={data.date}
           />
         )
         // ))

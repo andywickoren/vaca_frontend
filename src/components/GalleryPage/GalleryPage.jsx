@@ -2,11 +2,13 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import NavbarGallery from "../NavbarGallery/NavbarGallery";
 import ArkansasIcon from "../../assets/ArkansasIcon.svg";
+import Gallery from "../Gallery/Gallery";
 import "./GalleryPage.css";
 
 function GalleryPage({ tripData }) {
   const { tripSlug } = useParams();
   const selectedTrip = tripData.find((trip) => trip.tripSlug === tripSlug);
+  //   console.log("SELECTED TRIP: ", selectedTrip);
 
   return (
     <div className="gallery-page">
@@ -51,6 +53,7 @@ function GalleryPage({ tripData }) {
           </p>
         </div>
       </div>
+      <Gallery selectedTrip={selectedTrip}></Gallery>
     </div>
   );
 }
