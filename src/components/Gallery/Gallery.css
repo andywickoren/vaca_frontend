@@ -8,14 +8,13 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 10px;
-  /* Removing justify-content centers the grid items in their cells automatically */
 }
 
 .gallery__item {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 4 / 3; /* This enforces a 4:3 ratio regardless of width */
-  width: 100%; /* Let the grid cell determine the width */
+  aspect-ratio: 4 / 3;
+  width: 100%;
 }
 
 .gallery__img {
