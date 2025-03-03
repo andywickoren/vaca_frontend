@@ -14,7 +14,7 @@
   justify-content: space-between;
   padding: 0px;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 0.5px solid #000;
 }
 
 /* .navbar__compass-container {
@@ -62,8 +62,8 @@
 }
 
 .navbar__button_style_dark:hover {
-  border-color: #676767;
-  color: #676767;
+  border-color: #fff;
+  color: #fff;
 }
 
 .navbar__logo {
@@ -100,14 +100,15 @@
 
 .navbar__tooltip {
   position: absolute;
-  bottom: -30px;
+  bottom: -16px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #333;
+  /* background-color: #333; */
   color: #fff;
   padding: 5px 10px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 11px;
+  font-family: "Inter", sans-serif;
   white-space: nowrap;
   opacity: 0;
   transition: opacity 0.2s;
@@ -118,7 +119,7 @@
 .navbar__tooltip_mode_black {
   font-family: "Roboto";
   background-color: transparent;
-  color: #676767;
+  color: #fff;
   /* color:rgba(255, 255, 255, 0.2) */
 }
 

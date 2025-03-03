@@ -14,6 +14,9 @@ import ImageUploadBlack from "../../assets/ImageUploadBlack.svg";
 import ImageUploadDarkGrey from "../../assets/ImageUploadDarkGrey.svg";
 import ReturnBlack from "../../assets/ReturnBlack.svg";
 import ReturnGrey from "../../assets/ReturnGrey.svg";
+import UploadGallery from "../../assets/UploadGallery.svg";
+import UploadGalleryHover from "../../assets/UploadGalleryHover.svg";
+import ReturnWhite from "../../assets/ReturnWhite.svg";
 
 function NavbarGallery({
   handleSigninClick,
@@ -55,7 +58,7 @@ function NavbarGallery({
             onMouseLeave={() => setImageUploadHover(false)}
           >
             <img
-              src={imageUploadHover ? ImageUploadDarkGrey : ImageUploadBlack}
+              src={imageUploadHover ? UploadGalleryHover : UploadGallery}
               alt=""
               className="navbar__image-upload-icon"
               // onMouseEnter={() => setIsHovered(true)}
@@ -64,7 +67,7 @@ function NavbarGallery({
             />
             {imageUploadHover && (
               <span className="navbar__tooltip navbar__tooltip_mode_black">
-                Add photos of {tripName}
+                Add to {tripName}
               </span>
             )}
           </div>
@@ -77,7 +80,7 @@ function NavbarGallery({
               <div className="navbar__button-wrapper">
                 <p className="navbar__logout-button-text">Carol</p>
                 <img
-                  src={returnHovered ? ReturnGrey : ReturnBlack}
+                  src={returnHovered ? ReturnWhite : ReturnBlack}
                   alt=""
                   className="navbar__return-icon"
                 />

@@ -16,6 +16,7 @@ import GalleryPage from "../GalleryPage/GalleryPage";
 
 function App() {
   const [tripData, setTripData] = useState([]);
+  console.log(tripData);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeModal, setActiveModal] = useState("");
   const [currentUser, setCurrentUser] = useState("Carol");

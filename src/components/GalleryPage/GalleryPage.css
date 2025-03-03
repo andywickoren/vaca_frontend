@@ -61,7 +61,29 @@
 }
 
 .bottom-right {
-  grid-area: bottomRight;
+  position: relative;
+  padding: 25px 20px;
+}
+
+.bottom-right__overlay {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 1;
 }
 
 .gallery-page__main-title {
@@ -71,7 +93,7 @@
 }
 
 .gallery-page__trip-icon {
-  height: 60px;
+  height: 70px;
 }
 
 .gallery-page__trip-title {
@@ -92,6 +114,7 @@
   min-height: 400px;
   max-height: 500px;
   object-fit: cover;
+  border-radius: 15px;
 }
 
 /* .gallery-page__main-image {
@@ -103,11 +126,74 @@
 } */
 
 .gallery-page__description-title {
-  font-size: 24px;
+  font-size: 31px;
   margin: 0;
+  font-family: "Roboto";
+  font-weight: 500;
+  z-index: 2;
 }
 
 .gallery-page__description-text {
-  font-size: 16px;
+  /* font-size: 16px; */
   line-height: 1.5;
+  font-family: "Inter";
+  font-size: 15px;
+  margin: 0 0 22px 0;
+  z-index: 2;
+  position: relative;
+  max-height: 225px;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gallery-page__show-more-button {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  background-color: #fff;
+  width: 200px;
+  height: 40px;
+  border-radius: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.gallery-page__show-more-button:hover {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.gallery-page__show-more-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.gallery-page__next-trip {
+  display: flex;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 4px 10px;
+  border-radius: 17px;
+  gap: 11px;
+  z-index: 2;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  position: absolute;
+  bottom: 20px;
+  right: 25px;
+}
+
+.gallery-page__next-trip:hover {
+  color: #000;
+  cursor: pointer;
+}
+
+.gallery-page__next-arrow {
+  width: 40px;
 }

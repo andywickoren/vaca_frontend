@@ -6,11 +6,11 @@ function SearchForm() {
       <input
         type="text"
         className="search-form__input"
-        placeholder="Enter topic"
+        placeholder="Enter trip details"
         aria-label="Search topics"
       />
       <button type="submit" className="search-form__button">
-        Submit
+        Search
       </button>
     </form>
   );
