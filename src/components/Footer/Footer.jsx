@@ -5,13 +5,25 @@ import FacebookIcon from "../../assets/facebook6-icon.png";
 import FacebookIconHovered from "../../assets/FacebookIconHovered.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-function Footer() {
+function Footer({ dominantColor }) {
   const [githubIconHovered, setGithubIconHovered] = useState(false);
   const [facebookIconHovered, setFacebookIconHovered] = useState(false);
+  const backgroundColor = dominantColor
+    ? `rgb(${dominantColor[0]}, ${dominantColor[1]}, ${dominantColor[2]}, 0.5)`
+    : "rgba(255, 255, 255, 0.4)"; // Lighter white for fallback
 
   return (
-    <footer className="footer">
-      <div className="footer__copyright">© 2025 Joseph Wickoren</div>
+    <footer
+      className="footer"
+      style={{
+        backgroundImage: `linear-gradient(to bottom, 
+        ${backgroundColor}, 
+       rgb(${dominantColor[0]}, ${dominantColor[1]}, ${dominantColor[2]}, 0.15)`,
+      }}
+    >
+      <div className="footer__copyright-container">
+        <div className="footer__copyright">© 2025 Joseph Wickoren</div>
+      </div>
       <div className="footer__options">
         <Link className="footer__link" to="/">
           <button className="footer__options-home">Home</button>

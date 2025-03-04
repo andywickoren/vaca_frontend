@@ -52,6 +52,7 @@
   grid-area: topRight;
   display: flex;
   align-items: center;
+  position: relative;
   /* justify-content: center; */
   /* text-align: center;  */
 }
@@ -149,6 +150,21 @@
   text-overflow: ellipsis;
 }
 
+.gallery-page__edit-icon {
+  height: 25px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.expanded {
+  max-height: none;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+  text-overflow: unset;
+  display: block;
+}
+
 .gallery-page__show-more-button {
   font-family: "Inter", sans-serif;
   font-size: 15px;
@@ -187,6 +203,10 @@
   position: absolute;
   bottom: 20px;
   right: 25px;
+}
+
+.gallery-page__next-trip_collapse {
+  display: none;
 }
 
 .gallery-page__next-trip:hover {

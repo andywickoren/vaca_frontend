@@ -15,6 +15,7 @@ import TripModal from "../TripModal/TripModal";
 import GalleryPage from "../GalleryPage/GalleryPage";
 
 function App() {
+  const [dominantColor, setDominantColor] = useState(null);
   const [tripData, setTripData] = useState([]);
   console.log(tripData);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -120,11 +121,17 @@ function App() {
           /> */}
           <Route
             path="/gallery/:tripSlug"
-            element={<GalleryPage tripData={tripData} />}
+            element={
+              <GalleryPage
+                tripData={tripData}
+                dominantColor={dominantColor}
+                setDominantColor={setDominantColor}
+              />
+            }
           />
         </Routes>
 
-        <Footer></Footer>
+        <Footer dominantColor={dominantColor}></Footer>
         {activeModal === "signin-modal" && (
           <SigninModal
             handleSignin={handleSignin}

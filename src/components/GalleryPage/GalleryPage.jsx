@@ -9,9 +9,11 @@ import ColorThief from "colorthief";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-function GalleryPage({ tripData }) {
+import EditIcon from "../../assets/EditIcon.svg";
+function GalleryPage({ tripData, dominantColor, setDominantColor }) {
+  const [isExpanded, setIsExpanded] = useState(false);
   const [nextArrowHovered, setNextArrowHovered] = useState(false);
-  const [dominantColor, setDominantColor] = useState(null);
+  //   const [dominantColor, setDominantColor] = useState(null);
   const { tripSlug } = useParams();
   const navigate = useNavigate();
   const selectedTrip = tripData.find((trip) => trip.tripSlug === tripSlug);
@@ -35,11 +37,6 @@ function GalleryPage({ tripData }) {
       };
     }
   }, [selectedTrip]);
-
-  //Bro when tripCards comes from TripModal youre going to have to move he first
-  //array element to the end and then render this page so that the lasat arraay element
-  //appears aas the main display image and then the tripCrads array is just rendered in
-  //order for the gallery component, so that the display image comes last on that portion
 
   return (
     <div className="gallery-page">
@@ -67,6 +64,7 @@ function GalleryPage({ tripData }) {
               <h3 className="gallery-page__description-title">
                 Test Description Title
               </h3>
+              <img src={EditIcon} alt="" className="gallery-page__edit-icon" />
             </div>
             <div className="grid-cell bottom-left">
               {/* dynamically set this background based on the colors
@@ -81,7 +79,9 @@ function GalleryPage({ tripData }) {
             </div>
             <div className="grid-cell bottom-right">
               <div
-                className="gallery-page__next-trip"
+                className={`gallery-page__next-trip ${
+                  isExpanded ? "gallery-page__next-trip_collapse" : ""
+                }`}
                 onMouseEnter={() => setNextArrowHovered(true)}
                 onMouseLeave={() => setNextArrowHovered(false)}
                 onClick={handleNext}
@@ -97,7 +97,11 @@ function GalleryPage({ tripData }) {
               </div>
               <div className="bottom-right__overlay"></div>{" "}
               {/* Overlay layer */}
-              <p className="gallery-page__description-text">
+              <p
+                className={`gallery-page__description-text ${
+                  isExpanded ? "expanded" : ""
+                }`}
+              >
                 Yes, a finite automaton (FA) can indeed be considered a kind of
                 parser, but it’s a very specific and limited type of parser. To
                 understand this, let’s break down what a finite automaton is,
@@ -109,9 +113,14 @@ function GalleryPage({ tripData }) {
                 (final) states. Transitions: Rules that define how the automaton
                 moves from one state to another based on input symbols.
               </p>
-              <div className="gallery-page__show-more-wrapper">
+              <div
+                className="gallery-page__show-more-wrapper"
+                onClick={() => setIsExpanded((prev) => !prev)}
+              >
                 <div className="gallery-page__show-more-button">
-                  <p className="gallery-page__show-more-text">Show More</p>
+                  <p className="gallery-page__show-more-text">
+                    {isExpanded ? "Show Less" : "Show More"}
+                  </p>
                 </div>
               </div>
             </div>
