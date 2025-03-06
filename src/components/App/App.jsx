@@ -15,7 +15,7 @@ import TripModal from "../TripModal/TripModal";
 import GalleryPage from "../GalleryPage/GalleryPage";
 
 function App() {
-  const [dominantColor, setDominantColor] = useState(null);
+  const [dominantColor, setDominantColor] = useState("#fff");
   const [tripData, setTripData] = useState([]);
   console.log(tripData);
   const [isLoggedIn, setIsLoggedIn] = useState(false);

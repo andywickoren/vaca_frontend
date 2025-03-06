@@ -32,7 +32,9 @@ function TripCard({
   return (
     <div className="tripcard__container">
       <div className="tripcard__image-container">
-        <img src={imageUrl} alt="" className="tripcard__image" />
+        <Link className="tripcard__link" to={`/gallery/${tripSlug}`}>
+          <img src={imageUrl} alt="" className="tripcard__image" />
+        </Link>
         <div className="tripcard__bookmark-container">
           <img
             className="tripcard__bookmark_unmarked"
