@@ -13,6 +13,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import cardinal from "../../assets/Cardinal.jpg";
 import TripModal from "../TripModal/TripModal";
 import GalleryPage from "../GalleryPage/GalleryPage";
+import { formatDate } from "../../utils/dateUtils";
 
 function App() {
   const [dominantColor, setDominantColor] = useState("#fff");
@@ -25,6 +26,21 @@ function App() {
   useEffect(() => {
     console.log(tripData);
   }, [tripData]);
+
+  useEffect(() => {
+    fetch("http://localhost:5001/trips")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Fetched trip data:", data);
+        const formattedData = data.map((trip) => ({
+          ...trip,
+          date: formatDate(trip.date),
+        }));
+
+        setTripData(formattedData);
+      })
+      .catch((err) => console.error("Error fetching trips:", err));
+  }, []);
 
   function handleCloseClick() {
     setActiveModal("");

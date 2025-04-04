@@ -20,6 +20,8 @@ function TripCard({
   tripSlug,
   date,
 }) {
+  console.log("State passed to TripCard ****************:", state);
+
   console.log("DATE: ", date);
   // const TripCard = ({ trip }) => {
   //   const fullStateName = stateAbbreviations[trip.state] || trip.state;

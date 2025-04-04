@@ -4,6 +4,8 @@ import Select from "react-select";
 import ImageModalUploadIcon from "../../assets/ImageModalUploadIcon.svg";
 import { states } from "../../constants/states";
 import { countries } from "../../constants/countries";
+import { addTrip } from "../../api";
+import { formatDate } from "../../utils/dateUtils";
 
 function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
   const title = "New Trip";
@@ -17,6 +19,9 @@ function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
     images: [],
     date: "",
   });
+
+  const [selectedState, setSelectedState] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState(null);
 
   const handleChange = (event) => {
     setFormData((prevData) => ({
@@ -32,58 +37,53 @@ function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
     }));
   };
 
-  const [selectedFiles, setSelectedFiles] = useState([]);
-
-  //   const handleFileChange = (event) => {
-  //     setSelectedFiles(Array.from(event.target.files));
-  //   };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const currentDate = new Date().toISOString();
-    const formatDate = (isoDateString) => {
-      const date = new Date(isoDateString);
-      return new Intl.DateTimeFormat("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-      }).format(date);
-    };
-
-    const formattedDate = formatDate(currentDate);
-    console.log("FORMATTED DATE: ", formattedDate);
 
     const formattedTripName = formData.tripName
       .toLowerCase()
       .replace(/\s+/g, "-");
 
-    const newCard = {
-      tripName: formData.tripName,
-      nationalPark: formData.nationalPark,
-      state: formData.state,
-      country: formData.country,
-      tripSlug: formattedTripName,
-      date: formattedDate,
-      images: formData.images.map((file) => URL.createObjectURL(file)),
-    };
+    const form = new FormData();
+    form.append("tripName", formData.tripName);
+    form.append("nationalPark", formData.nationalPark);
+    form.append("state", formData.state);
+    form.append("country", formData.country);
+    form.append("tripSlug", formattedTripName);
+    form.append("date", currentDate);
 
-    handleAddTrip(newCard);
-
-    setFormData({
-      tripName: "",
-      nationalPark: "",
-      state: "",
-      country: "",
-      images: [],
-      date: formattedDate,
+    formData.images.forEach((image) => {
+      form.append("images", image);
     });
 
-    handleCloseClick();
-  };
+    try {
+      const response = await fetch("http://localhost:5001/trips", {
+        method: "POST",
+        body: form,
+      });
 
-  const [selectedState, setSelectedState] = useState(null);
-  const [selectedCountry, setSelectedCountry] = useState(null);
+      if (!response.ok) {
+        throw new Error("Failed to add trip");
+      }
+
+      const savedTrip = await response.json();
+      handleAddTrip(savedTrip);
+      setFormData({
+        tripName: "",
+        tripSlug: "",
+        nationalPark: "",
+        state: "",
+        country: "",
+        images: [],
+        date: "",
+      });
+      handleCloseClick();
+    } catch (error) {
+      console.error("Error adding trip:", error);
+    }
+  };
 
   const handleCountryChange = (selectedOption) => {
     setSelectedCountry(selectedOption);
@@ -110,7 +110,7 @@ function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
       handleSubmit={handleSubmit}
     >
       <div className="modal__input-wrapper">
-        <label htmlFor="email" className="modal__label">
+        <label htmlFor="tripName" className="modal__label">
           Trip Name
         </label>
         <input
@@ -121,15 +121,10 @@ function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
           placeholder="Name your trip"
           onChange={handleChange}
           value={formData.tripName}
-          //   value={trip}
-          //   onChange={handleTripNameChange}
         />
-        <span className="modal__error-message modal__error-message_type_trip">
-          {/* {tripError} */}
-        </span>
       </div>
       <div className="modal__input-wrapper">
-        <label htmlFor="username" className="modal__label">
+        <label htmlFor="nationalPark" className="modal__label">
           National Park
         </label>
         <input
@@ -140,14 +135,8 @@ function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
           placeholder="National Park (optional)"
           onChange={handleChange}
           value={formData.nationalPark}
-          //   value={national - park}
-          //   onChange={handleStateChange}
         />
-        <span className="modal__error-message modal__error-message_type_username">
-          {/* {nation-park-error} */}
-        </span>
       </div>
-
       <div className="modal__input-wrapper">
         <label htmlFor="country" className="modal__label">
           Country
@@ -163,10 +152,6 @@ function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
           classNamePrefix="modal-select"
           isSearchable
         />
-
-        <span className="modal__error-message modal__error-message_type_password">
-          {/* {countryError} */}
-        </span>
       </div>
       <div className="modal__input-wrapper">
         <label htmlFor="state" className="modal__label">
@@ -183,67 +168,40 @@ function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
           classNamePrefix="modal-select"
           isSearchable
         />
-        <span className="modal__error-message modal__error-message_type_state">
-          {/* {stateError} */}
-        </span>
       </div>
-
-      <div className="modal__buttons-wrapper">
-        {/* <span className="modal__error-message_type_register-error">
-          {submissionError}
-        </span> */}
-        <div className="modal__file-input-container">
-          <input
-            type="file"
-            id="image-upload"
-            name="images"
-            multiple
-            className="modal__file-input"
-            onChange={handleFileChange}
-          />
-          <label htmlFor="image-upload" className="modal__file-label">
-            <p className="modal__signin-btn-txt">Upload Images</p>
-            <img
-              src={ImageModalUploadIcon}
-              alt=""
-              className="modal__image-modal-upload-icon"
-            />
-          </label>
-        </div>
-
-        <button
-          type="submit"
-          className="modal__submit modal__signin-btn"
-          onClick={handleSubmit}
-        >
-          <p className="modal__signin-btn-txt">Submit</p>
-          {/* <img
+      <div className="modal__file-input-container">
+        <input
+          type="file"
+          id="image-upload"
+          name="images"
+          multiple
+          className="modal__file-input"
+          onChange={handleFileChange}
+        />
+        <label htmlFor="image-upload" className="modal__file-label">
+          <p className="modal__signin-btn-txt">Upload Images</p>
+          <img
             src={ImageModalUploadIcon}
             alt=""
             className="modal__image-modal-upload-icon"
-          /> */}
-        </button>
-        {formData.images.length > 0 && (
-          <div className="modal__image-previews">
-            {formData.images.map((file, index) => (
-              <img
-                key={index}
-                src={URL.createObjectURL(file)}
-                alt="Selected"
-                className="modal__image-preview"
-              />
-            ))}
-          </div>
-        )}
-        {/* <button
-          type="button"
-          className="modal__or-signup-btn"
-          //   onClick={openSigninModal}
-        >
-          <span className="modal__or">or </span>
-          <span className="modal__signup">Sign in</span>
-        </button> */}
+          />
+        </label>
       </div>
+      <button type="submit" className="modal__submit modal__signin-btn">
+        <p className="modal__signin-btn-txt">Submit</p>
+      </button>
+      {formData.images.length > 0 && (
+        <div className="modal__image-previews">
+          {formData.images.map((file, index) => (
+            <img
+              key={index}
+              src={URL.createObjectURL(file)}
+              alt="Selected"
+              className="modal__image-preview"
+            />
+          ))}
+        </div>
+      )}
     </ModalWithForm>
   );
 }
