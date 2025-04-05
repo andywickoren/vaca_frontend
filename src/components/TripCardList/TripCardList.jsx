@@ -2,16 +2,17 @@ import "./TripCardList.css";
 import TripCard from "../TripCard/TripCard";
 
 function TripCardList({ tripData }) {
-  // const cardsList = testCards();
-  // console.log(cardsList[0].imageUrl);
   return (
     <ul className="trip-card-list">
-      {tripData.map(
-        (data, index) => (
-          // data.images.map((image, imageIndex) => (
+      {tripData.map((data, index) => {
+        console.log("Data in parent component: ", data); // Log the entire data object
+        console.log("Images Array: ", data.images); // Log the images array
+        const imageUrl = `http://localhost:5001${data.images[0]}`;
+
+        return (
           <TripCard
-            // key={`${index}-${imageIndex}`}
-            imageUrl={data.images[0]}
+            key={index}
+            imageUrl={imageUrl} // Check the first image
             state={data.state}
             country={data.country}
             nationalPark={data.nationalPark}
@@ -19,9 +20,8 @@ function TripCardList({ tripData }) {
             tripName={data.tripName}
             date={data.date}
           />
-        )
-        // ))
-      )}
+        );
+      })}
     </ul>
   );
 }

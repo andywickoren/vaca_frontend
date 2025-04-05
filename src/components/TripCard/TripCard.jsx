@@ -20,6 +20,7 @@ function TripCard({
   tripSlug,
   date,
 }) {
+  console.log("Image URL ====================>", imageUrl);
   console.log("State passed to TripCard ****************:", state);
 
   console.log("DATE: ", date);

@@ -28,7 +28,7 @@ function GalleryPage({ tripData, dominantColor, setDominantColor }) {
   useEffect(() => {
     if (selectedTrip && selectedTrip.images && selectedTrip.images.length > 0) {
       const img = new Image();
-      img.src = selectedTrip.images[0];
+      img.src = `http://localhost:5001${selectedTrip.images[0]}`;
       img.onload = () => {
         const colorThief = new ColorThief();
         const color = colorThief.getColor(img); // Get the dominant color
@@ -43,7 +43,9 @@ function GalleryPage({ tripData, dominantColor, setDominantColor }) {
       <div className="gallery-page-background">
         <div
           className="background-image"
-          style={{ backgroundImage: `url(${selectedTrip.images[0]})` }}
+          style={{
+            backgroundImage: `url(http://localhost:5001${selectedTrip.images[0]})`, // Use full image URL
+          }}
         ></div>
         <div className="gallery-page__wrapper">
           <NavbarGallery tripName={selectedTrip.tripName} />
@@ -71,7 +73,7 @@ function GalleryPage({ tripData, dominantColor, setDominantColor }) {
           in this image */}
               <div className="gallery-page__main-image-wrapper">
                 <img
-                  src={selectedTrip.images[0]}
+                  src={`http://localhost:5001${selectedTrip.images[0]}`}
                   alt=""
                   className="gallery-page__main-image"
                 />
