@@ -11,9 +11,10 @@ import RegisterModal from "../RegisterModal/RegisterModal";
 import ConfirmRegisterModal from "../ConfirmRegisterModal/ConfirmRegisterModal";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import cardinal from "../../assets/Cardinal.jpg";
-import TripModal from "../TripModal/TripModal";
+import AddTripModal from "../AddTripModal/AddTripModal";
 import GalleryPage from "../GalleryPage/GalleryPage";
 import { formatDate } from "../../utils/dateUtils";
+import TripCardEditModal from "../TripCardEditModal/TripCardEditModal";
 
 function App() {
   const [dominantColor, setDominantColor] = useState("#fff");
@@ -71,6 +72,10 @@ function App() {
     setActiveModal("trip-modal");
   }
 
+  function handleEditTripCardClick() {
+    setActiveModal("trip-card-edit-modal");
+  }
+
   function handleSubmit() {
     console.log("you submitted bro");
   }
@@ -126,6 +131,7 @@ function App() {
                   handleAddTripClick={handleAddTripClick}
                   tripData={tripData}
                   handleSigninClick={handleSigninClick}
+                  handleEditTripCardClick={handleEditTripCardClick}
                 />
                 <About></About>
               </>
@@ -171,13 +177,19 @@ function App() {
           ></ConfirmRegisterModal>
         )}
         {activeModal === "trip-modal" && (
-          <TripModal
+          <AddTripModal
             handleAddTrip={handleAddTrip}
             openSigninModal={handleSigninClick}
             handleCloseClick={handleCloseClick}
             handleSubmit={handleSubmit}
             isOpen={activeModal === "trip-modal"}
-          ></TripModal>
+          ></AddTripModal>
+        )}
+        {activeModal === "trip-card-edit-modal" && (
+          <TripCardEditModal
+            handleCloseClick={handleCloseClick}
+            isOpen={activeModal === "trip-card-edit-modal"}
+          ></TripCardEditModal>
         )}
       </div>
     </CurrentUserContext.Provider>

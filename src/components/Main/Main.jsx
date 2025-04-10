@@ -8,7 +8,12 @@ import { useContext } from "react";
 import { useState } from "react";
 import MoutainIcon from "../../assets/MountainIcon.svg";
 
-function Main({ tripData, handleSigninClick, handleAddTripClick }) {
+function Main({
+  tripData,
+  handleSigninClick,
+  handleAddTripClick,
+  handleEditTripCardClick,
+}) {
   const { currentUser } = useContext(CurrentUserContext);
   const layout = "Home";
   // const [tripCards, setTripCards] = useState(testCards);
@@ -28,7 +33,11 @@ function Main({ tripData, handleSigninClick, handleAddTripClick }) {
           <img src={MoutainIcon} alt="" className="main__heading-icon" />
         </div>
 
-        <TripCardList tripData={tripData} layout={layout} />
+        <TripCardList
+          tripData={tripData}
+          layout={layout}
+          handleEditTripCardClick={handleEditTripCardClick}
+        />
         <div className="main__show-more-button-container">
           <button className="main__show-more-button">Show More</button>
         </div>

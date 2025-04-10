@@ -7,7 +7,7 @@ import { countries } from "../../constants/countries";
 import { addTrip } from "../../api";
 import { formatDate } from "../../utils/dateUtils";
 
-function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
+function AddTripModal({ handleCloseClick, isOpen, handleAddTrip }) {
   const title = "New Trip";
 
   const [formData, setFormData] = useState({
@@ -206,4 +206,4 @@ function TripModal({ handleCloseClick, isOpen, handleAddTrip }) {
   );
 }
 
-export default TripModal;
+export default AddTripModal;

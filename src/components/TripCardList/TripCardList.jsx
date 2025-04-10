@@ -1,7 +1,7 @@
 import "./TripCardList.css";
 import TripCard from "../TripCard/TripCard";
 
-function TripCardList({ tripData }) {
+function TripCardList({ tripData, handleEditTripCardClick }) {
   return (
     <ul className="trip-card-list">
       {tripData.map((data, index) => {
@@ -19,6 +19,7 @@ function TripCardList({ tripData }) {
             tripSlug={data.tripSlug}
             tripName={data.tripName}
             date={data.date}
+            handleEditTripCardClick={handleEditTripCardClick}
           />
         );
       })}

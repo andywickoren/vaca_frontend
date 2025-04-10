@@ -1,0 +1,35 @@
+.trip-card-edit-modal {
+  /* width: 500px;
+  height: 500px; */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #0000004d;
+  /* display: none; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__opened {
+  display: flex;
+}
+
+.trip-card-edit-modal__content {
+  background-color: #fff;
+  /* background-color: aliceblue; */
+  position: relative;
+  padding: 34px 35px 38px 30px;
+  max-width: 380px;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.please {
+  width: 800px;
+  height: 900px;
+  background-color: #fff;
+}

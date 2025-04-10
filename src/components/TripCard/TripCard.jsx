@@ -19,6 +19,7 @@ function TripCard({
   nationalPark,
   tripSlug,
   date,
+  handleEditTripCardClick,
 }) {
   console.log("Image URL ====================>", imageUrl);
   console.log("State passed to TripCard ****************:", state);
@@ -56,6 +57,7 @@ function TripCard({
             className="tripcard__edit-icon"
             onMouseEnter={() => setEditIconHovered(true)}
             onMouseLeave={() => setEditIconHovered(false)}
+            onClick={() => handleEditTripCardClick()}
           />
         </div>
         <Link className="tripcard__link" to={`/gallery/${tripSlug}`}>
